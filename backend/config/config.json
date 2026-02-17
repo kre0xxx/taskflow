@@ -1,0 +1,18 @@
+{
+  "development": {
+    "username": "task_user",
+    "password": "task_password", 
+    "database": "task_manager",
+    "host": "localhost",
+    "dialect": "mysql",
+    "logging": false
+  },
+  "test": {
+    "username": "task_user",
+    "password": "task_password",
+    "database": "task_manager_test", 
+    "host": "localhost",
+    "dialect": "mysql",
+    "logging": false
+  }
+}
