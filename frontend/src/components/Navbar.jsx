@@ -29,7 +29,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 // Создаем экземпляр axios с интерцептором для токена
 const axiosInstance = axios.create({
@@ -272,6 +272,11 @@ const Navbar = () => {
 
   // 3. Функция для загрузки уведомлений из разных источников
   const fetchNotifications = async () => {
+    if (!user) {
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       
@@ -432,15 +437,16 @@ const Navbar = () => {
     setIsNotificationsOpen(false);
   };
 
-  // 7. Загружаем уведомления при монтировании
+  // 7. Загружаем уведомления после входа пользователя
   useEffect(() => {
+    if (!user) return;
+
     fetchNotifications();
-    
-    // Опционально: периодическое обновление уведомлений
+
     const interval = setInterval(fetchNotifications, 30000); // Каждые 30 секунд
-    
+
     return () => clearInterval(interval);
-  }, []);
+  }, [user]);
 
   // 8. Закрытие меню при клике вне области
   useEffect(() => {

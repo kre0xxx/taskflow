@@ -63,6 +63,28 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
+// GET /api/users/search/:query - Поиск пользователей
+router.get('/search/:query', adminAuth, async (req, res) => {
+  try {
+    const searchQuery = req.params.query;
+    const users = await User.findAll({
+      where: {
+        [Op.or]: [
+          { username: { [Op.like]: `%${searchQuery}%` } },
+          { email: { [Op.like]: `%${searchQuery}%` } }
+        ]
+      },
+      attributes: { exclude: ['password'] },
+      limit: 20
+    });
+    
+    res.json(users);
+  } catch (error) {
+    console.error('Error searching users:', error);
+    res.status(500).json({ message: 'Ошибка при поиске пользователей' });
+  }
+});
+
 // GET /api/users/:id - Получить конкретного пользователя
 router.get('/:id', auth, async (req, res) => {
   try {
@@ -390,29 +412,6 @@ router.post('/:id/telegram', auth, async (req, res) => {
   } catch (error) {
     console.error('Error updating telegram ID:', error);
     res.status(500).json({ message: 'Ошибка при обновлении Telegram ID' });
-  }
-});
-
-// GET /api/users/search - Поиск пользователей
-router.get('/search/:query', adminAuth, async (req, res) => {
-  try {
-    const searchQuery = req.params.query;
-    
-    const users = await User.findAll({
-      where: {
-        [Op.or]: [
-          { username: { [Op.like]: `%${searchQuery}%` } },
-          { email: { [Op.like]: `%${searchQuery}%` } }
-        ]
-      },
-      attributes: { exclude: ['password'] },
-      limit: 20
-    });
-    
-    res.json(users);
-  } catch (error) {
-    console.error('Error searching users:', error);
-    res.status(500).json({ message: 'Ошибка при поиске пользователей' });
   }
 });
 

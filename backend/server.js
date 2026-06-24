@@ -6,7 +6,7 @@ const db = require('./models');
 const notificationScheduler = require('./services/notificationScheduler');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5002;
 
 // Middleware
 app.use(cors());
@@ -47,9 +47,18 @@ db.sequelize.authenticate()
     notificationScheduler.start();
     console.log('Notification scheduler started');
     
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${PORT} is already in use. Set a different PORT in backend/.env or stop the process using this port.`);
+      } else {
+        console.error('Server error:', err);
+      }
+      process.exit(1);
     });
   })
   .catch(err => {
