@@ -308,7 +308,7 @@ const Navbar = () => {
 
       // Загружаем системные уведомления (например, дедлайны)
       const tasksResponse = await axiosInstance.get('/tasks/upcoming-deadlines');
-      const deadlineNotifications = tasksResponse.data.map((task, index) => ({
+      const deadlineNotifications = (tasksResponse.data.tasks || tasksResponse.data || []).map((task, index) => ({
         id: `deadline_${task.id || index}`,
         type: 'deadline',
         title: 'Срок истекает',

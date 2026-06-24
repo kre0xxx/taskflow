@@ -119,7 +119,7 @@ const TelegramSettings = () => {
 
   const fetchRecentNotifications = async () => {
     try {
-      const response = await axios.get(`${API_URL}/telegram/notifications/recent`);
+      const response = await axios.get(`${API_URL}/telegram/notifications`);
       setNotifications(response.data);
     } catch (error) {
       console.error('Ошибка загрузки уведомлений:', error);

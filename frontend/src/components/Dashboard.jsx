@@ -58,12 +58,11 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const [tasksResponse, usersResponse] = await Promise.all([
-        axios.get(`${API_URL}/tasks`),
-        isAdmin ? axios.get(`${API_URL}/users`) : Promise.resolve({ data: [] })
-      ]);
+      axios.get(`${API_URL}/tasks`, { params: { limit: 100 } }),
+      isAdmin ? axios.get(`${API_URL}/users`) : Promise.resolve({ data: [] })
+    ]);
 
-      const tasks = tasksResponse.data;
-      const today = new Date();
+    const tasks = tasksResponse.data.tasks || tasksResponse.data || [];
 
       const myTasks = tasks.filter(task => (!isAdmin ? task.assignedTo === user.id : true));
 
@@ -306,14 +305,14 @@ const Dashboard = () => {
                           <span className="capitalize">
                             {task.status === 'completed'
                               ? 'Выполнена'
-                              : task.status === 'in_progress'
+                              : task.status === 'in-progress'
                               ? 'В работе'
                               : 'К выполнению'}
                           </span>
-                          {task.deadline && (
+                          {task.dueDate && (
                             <span className="flex items-center">
                               <Clock className="w-3 h-3 mr-1" />
-                              {new Date(task.deadline).toLocaleDateString('ru-RU')}
+                              {new Date(task.dueDate).toLocaleDateString('ru-RU')}
                             </span>
                           )}
                         </div>

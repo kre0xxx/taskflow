@@ -20,7 +20,7 @@ const taskSchema = Joi.object({
 const taskUpdateSchema = Joi.object({
   title: Joi.string().min(3).max(200),
   description: Joi.string().allow('', null),
-  status: Joi.string().valid('new', 'in-progress', 'completed', 'cancelled'),
+  status: Joi.string().valid('new', 'in-progress', 'review', 'completed', 'cancelled'),
   priority: Joi.string().valid('low', 'medium', 'high'),
   dueDate: Joi.date().iso().allow(null),
   assignedTo: Joi.number().integer().positive(),
@@ -47,7 +47,7 @@ router.get('/', auth, async (req, res) => {
 
     // Фильтрация по статусу
     if (req.query.status) {
-      const validStatuses = ['new', 'in-progress', 'completed', 'cancelled'];
+      const validStatuses = ['new', 'in-progress', 'review', 'completed', 'cancelled'];
       if (validStatuses.includes(req.query.status)) {
         whereClause.status = req.query.status;
       }
@@ -110,7 +110,7 @@ router.get('/my-tasks', auth, async (req, res) => {
     const tasks = await Task.findAll({
       where: { 
         assignedTo: req.user.id,
-        status: { [Op.in]: ['new', 'in-progress'] }
+        status: { [Op.in]: ['new', 'in-progress', 'review'] }
       },
       include: [
         {
@@ -248,16 +248,17 @@ router.get('/statistics', auth, async (req, res) => {
 
     const now = new Date();
     
-    const [total, completed, inProgress, newTasks, highPriority, overdue, cancelled] = await Promise.all([
+    const [total, completed, inProgress, newTasks, reviewTasks, highPriority, overdue, cancelled] = await Promise.all([
       Task.count({ where: whereClause }),
       Task.count({ where: { ...whereClause, status: 'completed' } }),
       Task.count({ where: { ...whereClause, status: 'in-progress' } }),
       Task.count({ where: { ...whereClause, status: 'new' } }),
+      Task.count({ where: { ...whereClause, status: 'review' } }),
       Task.count({ where: { ...whereClause, priority: 'high' } }),
       Task.count({
         where: {
           ...whereClause,
-          status: { [Op.in]: ['new', 'in-progress'] },
+          status: { [Op.in]: ['new', 'in-progress', 'review'] },
           dueDate: { [Op.lt]: now }
         }
       }),
@@ -272,6 +273,7 @@ router.get('/statistics', auth, async (req, res) => {
       completed,
       inProgress,
       new: newTasks,
+      review: reviewTasks,
       highPriority,
       overdue,
       cancelled,

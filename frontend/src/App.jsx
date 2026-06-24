@@ -5,6 +5,12 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Tasks from './components/Tasks';
 import TelegramSettings from './components/TelegramSettings';
+import UsersPage from './components/UsersPage';
+import StatsPage from './components/StatsPage';
+import ProfilePage from './components/ProfilePage';
+import NotificationsPage from './components/NotificationsPage';
+import SettingsPage from './components/SettingsPage';
+import TaskDetail from './components/TaskDetail';
 import Navbar from './components/Navbar';
 import { useAuth } from './context/AuthContext';
 
@@ -64,34 +70,37 @@ const App = () => {
 
             <Route path="/users" element={
               <PrivateRoute>
-                <div className="container mx-auto px-4 py-8">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Пользователи</h1>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
-                    <p className="text-gray-600 dark:text-gray-400">Раздел в разработке</p>
-                  </div>
-                </div>
+                <UsersPage />
               </PrivateRoute>
             } />
 
             <Route path="/stats" element={
               <PrivateRoute>
-                <div className="container mx-auto px-4 py-8">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Статистика</h1>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
-                    <p className="text-gray-600 dark:text-gray-400">Раздел в разработке</p>
-                  </div>
-                </div>
+                <StatsPage />
               </PrivateRoute>
             } />
 
             <Route path="/profile" element={
               <PrivateRoute>
-                <div className="container mx-auto px-4 py-8">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Мой профиль</h1>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 text-center">
-                    <p className="text-gray-600 dark:text-gray-400">Раздел в разработке</p>
-                  </div>
-                </div>
+                <ProfilePage />
+              </PrivateRoute>
+            } />
+
+            <Route path="/notifications" element={
+              <PrivateRoute>
+                <NotificationsPage />
+              </PrivateRoute>
+            } />
+
+            <Route path="/settings" element={
+              <PrivateRoute>
+                <SettingsPage />
+              </PrivateRoute>
+            } />
+
+            <Route path="/tasks/:id" element={
+              <PrivateRoute>
+                <TaskDetail />
               </PrivateRoute>
             } />
           </Routes>
