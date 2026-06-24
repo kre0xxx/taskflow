@@ -93,7 +93,7 @@ const Login = () => {
                   animate={{ opacity: 1, x: 0 }}
                   className="relative"
                 >
-                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                  <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" size={20} />
                   <input
                     name="username"
                     type="text"
@@ -107,7 +107,7 @@ const Login = () => {
               )}
               
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" size={20} />
                 <input
                   name="email"
                   type="email"
@@ -120,7 +120,7 @@ const Login = () => {
               </div>
               
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" size={20} />
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
@@ -133,7 +133,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:text-gray-300"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
@@ -186,20 +186,20 @@ const Login = () => {
               transition={{ delay: 0.3 }}
               className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border border-blue-100"
             >
-              <h3 className="font-medium text-gray-700 mb-3 flex items-center">
+              <h3 className="font-medium text-gray-700 mb-3 flex items-center dark:text-gray-300">
                 <Sparkles className="w-4 h-4 mr-2 text-blue-500" />
                 Тестовые аккаунты
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
-                  <span className="text-gray-600">Администратор</span>
-                  <span className="font-mono bg-gray-100 px-2 py-1 rounded text-gray-800">
+                  <span className="text-gray-600 dark:text-gray-400">Администратор</span>
+                  <span className="font-mono bg-gray-100 px-2 py-1 rounded text-gray-800 dark:text-gray-200">
                     admin@taskmanager.com / admin123
                   </span>
                 </div>
                 <div className="flex justify-between items-center p-2 bg-white/50 rounded-lg">
-                  <span className="text-gray-600">Пользователь</span>
-                  <span className="font-mono bg-gray-100 px-2 py-1 rounded text-gray-800">
+                  <span className="text-gray-600 dark:text-gray-400">Пользователь</span>
+                  <span className="font-mono bg-gray-100 px-2 py-1 rounded text-gray-800 dark:text-gray-200">
                     user1@taskmanager.com / user123
                   </span>
                 </div>

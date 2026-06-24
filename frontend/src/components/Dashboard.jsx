@@ -109,7 +109,7 @@ const Dashboard = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Загрузка данных...</p>
+          <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Загрузка данных...</p>
         </div>
       </div>
     );
@@ -169,7 +169,7 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Всего задач</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Всего задач</p>
               <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                 {isAdmin ? stats.totalTasks : stats.myTasks}
               </p>
@@ -192,7 +192,7 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Выполнено</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Выполнено</p>
               <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                 {stats.completedTasks}
               </p>
@@ -221,7 +221,7 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Просрочено</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Просрочено</p>
               <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                 {stats.overdueTasks}
               </p>
@@ -230,7 +230,7 @@ const Dashboard = () => {
               <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" />
             </div>
           </div>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
             Требуют внимания
           </div>
         </motion.div>
@@ -243,7 +243,7 @@ const Dashboard = () => {
         >
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                 {isAdmin ? 'Пользователей' : 'Высокий приоритет'}
               </p>
               <p className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
@@ -258,7 +258,7 @@ const Dashboard = () => {
               )}
             </div>
           </div>
-          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
             {isAdmin ? 'Активных в системе' : 'Срочных задач'}
           </div>
         </motion.div>
@@ -301,7 +301,7 @@ const Dashboard = () => {
                       ></div>
                       <div>
                         <h4 className="font-medium text-gray-900 dark:text-white">{task.title}</h4>
-                        <div className="flex items-center space-x-3 text-sm text-gray-500 dark:text-gray-400 mt-1">
+                        <div className="flex items-center space-x-3 text-sm text-gray-500 dark:text-gray-400 mt-1 dark:text-gray-300 dark:text-gray-300">
                           <span className="capitalize">
                             {task.status === 'completed'
                               ? 'Выполнена'
@@ -322,7 +322,7 @@ const Dashboard = () => {
                       <div className="text-sm font-medium">
                         {task.assignee?.username || 'Не назначена'}
                       </div>
-                      <div className="text-xs text-gray-500">Исполнитель</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-300">Исполнитель</div>
                     </div>
                   </div>
                 ))}
@@ -330,9 +330,9 @@ const Dashboard = () => {
             ) : (
               <div className="text-center py-12">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                  <Plus className="w-8 h-8 text-gray-400" />
+                  <Plus className="w-8 h-8 text-gray-400 dark:text-gray-300" />
                 </div>
-                <p className="text-gray-500 dark:text-gray-400 mb-4">Задачи еще не созданы</p>
+                <p className="text-gray-500 dark:text-gray-400 mb-4 dark:text-gray-300 dark:text-gray-300">Задачи еще не созданы</p>
                 <Link
                   to="/tasks"
                   className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -363,7 +363,7 @@ const Dashboard = () => {
                       <span className="font-medium">{item.user}</span> {item.action}{' '}
                       <span className="font-medium text-blue-600 dark:text-blue-400">{item.task}</span>
                     </p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">{item.time}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 dark:text-gray-300 dark:text-gray-300">{item.time}</p>
                   </div>
                 </div>
               ))}
@@ -396,9 +396,9 @@ const Dashboard = () => {
                   <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     Все задачи
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">Просмотр и управление</p>
+                  <p className="text-sm text-gray-500 mt-1 dark:text-gray-300">Просмотр и управление</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors dark:text-gray-300" />
               </div>
             </Link>
 
@@ -411,9 +411,9 @@ const Dashboard = () => {
                   <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     Создать задачу
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">Новая задача</p>
+                  <p className="text-sm text-gray-500 mt-1 dark:text-gray-300">Новая задача</p>
                 </div>
-                <Plus className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                <Plus className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors dark:text-gray-300" />
               </div>
             </Link>
 
@@ -426,9 +426,9 @@ const Dashboard = () => {
                   <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                     Telegram
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">Настройка уведомлений</p>
+                  <p className="text-sm text-gray-500 mt-1 dark:text-gray-300">Настройка уведомлений</p>
                 </div>
-                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors dark:text-gray-300" />
               </div>
             </Link>
 
@@ -442,9 +442,9 @@ const Dashboard = () => {
                     <h3 className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       Пользователи
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1">Управление доступом</p>
+                    <p className="text-sm text-gray-500 mt-1 dark:text-gray-300">Управление доступом</p>
                   </div>
-                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors" />
+                  <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 transition-colors dark:text-gray-300" />
                 </div>
               </Link>
             )}

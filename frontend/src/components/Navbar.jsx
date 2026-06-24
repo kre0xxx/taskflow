@@ -143,8 +143,8 @@ const NotificationsDropdown = ({
                   <Bell size={20} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg">Уведомления</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <h3 className="font-bold text-lg text-gray-900 dark:text-white">Уведомления</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                     {notifications.length} всего, {unreadCount} непрочитанных
                   </p>
                 </div>
@@ -162,7 +162,7 @@ const NotificationsDropdown = ({
 
           <div className="max-h-[500px] overflow-y-auto">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+              <div className="p-8 text-center text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                 <Bell className="mx-auto mb-2 opacity-50" size={32} />
                 <p className="font-medium mb-1">Нет уведомлений</p>
                 <p className="text-sm">Здесь появятся ваши уведомления</p>
@@ -187,7 +187,7 @@ const NotificationsDropdown = ({
                             <h4 className="font-medium text-gray-900 dark:text-white">
                               {notification.title}
                             </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 dark:text-gray-400">
                               {notification.message || notification.description}
                             </p>
                           </div>
@@ -198,11 +198,11 @@ const NotificationsDropdown = ({
                         
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center space-x-3">
-                            <span className="text-xs text-gray-500 dark:text-gray-400">
+                            <span className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                               {formatTime(notification.timestamp || notification.time)}
                             </span>
                             {notification.user && (
-                              <span className="text-xs text-gray-500 dark:text-gray-400">
+                              <span className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                                 • {notification.user}
                               </span>
                             )}
@@ -240,7 +240,7 @@ const NotificationsDropdown = ({
               </Link>
               <button
                 onClick={onClose}
-                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:text-gray-300 dark:text-gray-300 dark:text-gray-300"
               >
                 Закрыть
               </button>
@@ -484,7 +484,7 @@ const Navbar = () => {
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 TaskFlow
               </span>
-              <div className="text-xs text-gray-500 dark:text-gray-400">Управление задачами</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Управление задачами</div>
             </div>
           </Link>
 
@@ -547,9 +547,12 @@ const Navbar = () => {
               {isDark ? (
                 <Sun size={20} className="text-yellow-500" />
               ) : (
-                <Moon size={20} className="text-gray-700" />
+                <Moon size={20} className="text-gray-700 dark:text-gray-300" />
               )}
             </button>
+            <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-300 ml-2 dark:text-gray-400">
+              {isDark ? 'Тёмная' : 'Светлая'}
+            </div>
 
             {/* User Menu */}
             <div className="relative">
@@ -561,8 +564,8 @@ const Navbar = () => {
                   <User className="text-white" size={18} />
                 </div>
                 <div className="hidden md:block text-left">
-                  <div className="font-medium text-sm">{user.username}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+                  <div className="font-medium text-sm text-gray-900 dark:text-white">{user.username}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 capitalize dark:text-gray-300 dark:text-gray-300">
                     {user.role === 'admin' ? 'Администратор' : 'Пользователь'}
                   </div>
                 </div>
@@ -576,8 +579,8 @@ const Navbar = () => {
                   className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-2xl shadow-xl py-2 z-50 border border-gray-200 dark:border-gray-700"
                 >
                   <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-                    <div className="font-medium">{user.username}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">{user.email}</div>
+                    <div className="font-medium text-gray-900 dark:text-white">{user.username}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">{user.email}</div>
                   </div>
                   
                   <Link
@@ -586,7 +589,7 @@ const Navbar = () => {
                     className="flex items-center space-x-2 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     <User size={16} />
-                    <span>Мой профиль</span>
+                    <span className="text-gray-900 dark:text-white">Мой профиль</span>
                   </Link>
                   
                   <Link
@@ -595,7 +598,7 @@ const Navbar = () => {
                     className="flex items-center space-x-2 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     <Bell size={16} />
-                    <span>Уведомления</span>
+                    <span className="text-gray-900 dark:text-white">Уведомления</span>
                     {unreadNotificationsCount > 0 && (
                       <span className="ml-auto px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">
                         {unreadNotificationsCount}
@@ -609,7 +612,7 @@ const Navbar = () => {
                     className="flex items-center space-x-2 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     <Settings size={16} />
-                    <span>Настройки</span>
+                    <span className="text-gray-900 dark:text-white">Настройки</span>
                   </Link>
                   
                   <div className="border-t border-gray-100 dark:border-gray-700 my-2"></div>
@@ -662,7 +665,7 @@ const Navbar = () => {
               <Link
                 to="/notifications"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-400"
               >
                 <div className="flex items-center space-x-3">
                   <Bell size={20} />

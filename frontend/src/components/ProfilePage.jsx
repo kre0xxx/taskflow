@@ -81,7 +81,7 @@ const ProfilePage = () => {
     <div className="container mx-auto px-4 py-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Мой профиль</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">Управляйте своими данными, просматривайте задачи и Telegram-настройки.</p>
+        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-300">Управляйте своими данными, просматривайте задачи и Telegram-настройки.</p>
       </motion.div>
 
       <div className="grid gap-8 lg:grid-cols-3">
@@ -128,7 +128,7 @@ const ProfilePage = () => {
               </button>
               <Link
                 to="/telegram"
-                className="inline-flex items-center justify-center rounded-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="inline-flex items-center justify-center rounded-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors dark:text-gray-300"
               >
                 <Bot className="w-4 h-4 mr-2" /> Telegram настройки
               </Link>
@@ -142,11 +142,11 @@ const ProfilePage = () => {
               <User className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Текущий пользователь</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Текущий пользователь</p>
               <p className="text-lg font-semibold text-gray-900 dark:text-white">{profile.username}</p>
             </div>
           </div>
-          <div className="space-y-4 text-gray-600 dark:text-gray-400">
+          <div className="space-y-4 text-gray-600 dark:text-gray-400 dark:text-gray-300">
             <div className="flex items-center justify-between">
               <span>Email</span>
               <span>{profile.email}</span>
@@ -166,7 +166,7 @@ const ProfilePage = () => {
             <div className="flex items-center justify-between">
               <span>Telegram</span>
               <span className="inline-flex items-center gap-2">
-                {profile.telegramChatId ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Shield className="w-4 h-4 text-gray-500" />}
+                {profile.telegramChatId ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Shield className="w-4 h-4 text-gray-500 dark:text-gray-300" />}
                 {profile.telegramChatId ? 'Подключен' : 'Не подключен'}
               </span>
             </div>

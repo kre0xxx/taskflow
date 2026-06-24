@@ -64,29 +64,29 @@ const statusColumns = [
   { 
     id: 'new', 
     title: 'К выполнению', 
-    color: 'bg-gradient-to-r from-gray-100 to-gray-200', 
-    textColor: 'text-gray-700',
+    color: 'bg-gradient-to-r from-gray-200 to-gray-300', 
+    textColor: 'text-gray-800 dark:text-gray-300',
     icon: <List className="w-4 h-4" />
   },
   { 
     id: 'in-progress', 
     title: 'В работе', 
-    color: 'bg-gradient-to-r from-blue-50 to-blue-100', 
-    textColor: 'text-blue-700',
+    color: 'bg-gradient-to-r from-blue-100 to-blue-200', 
+    textColor: 'text-blue-800 dark:text-blue-300',
     icon: <Zap className="w-4 h-4" />
   },
   { 
     id: 'review', 
     title: 'На проверке', 
-    color: 'bg-gradient-to-r from-yellow-50 to-yellow-100', 
-    textColor: 'text-yellow-700',
+    color: 'bg-gradient-to-r from-yellow-100 to-yellow-200', 
+    textColor: 'text-yellow-800 dark:text-yellow-300',
     icon: <Eye className="w-4 h-4" />
   },
   { 
     id: 'completed', 
     title: 'Выполнено', 
-    color: 'bg-gradient-to-r from-green-50 to-green-100', 
-    textColor: 'text-green-700',
+    color: 'bg-gradient-to-r from-green-100 to-green-200', 
+    textColor: 'text-green-800 dark:text-green-300',
     icon: <CheckCircle className="w-4 h-4" />
   },
 ];
@@ -94,19 +94,19 @@ const statusColumns = [
 const priorityColors = {
   high: { 
     bg: 'bg-gradient-to-r from-red-100 to-red-50', 
-    text: 'text-red-700', 
+    text: 'text-red-700 dark:text-red-300', 
     border: 'border-red-200',
     icon: <AlertCircle className="w-4 h-4" />
   },
   medium: { 
     bg: 'bg-gradient-to-r from-yellow-100 to-yellow-50', 
-    text: 'text-yellow-700', 
+    text: 'text-yellow-700 dark:text-yellow-300', 
     border: 'border-yellow-200',
     icon: <Target className="w-4 h-4" />
   },
   low: { 
     bg: 'bg-gradient-to-r from-green-100 to-green-50', 
-    text: 'text-green-700', 
+    text: 'text-green-700 dark:text-green-300', 
     border: 'border-green-200',
     icon: <BarChart2 className="w-4 h-4" />
   },
@@ -668,7 +668,7 @@ const Tasks = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Загрузка задач...</p>
+          <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Загрузка задач...</p>
         </div>
       </div>
     );
@@ -743,7 +743,7 @@ const Tasks = () => {
 
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4 dark:text-gray-300" />
                 <input
                   type="text"
                   placeholder="Поиск задач..."
@@ -806,7 +806,7 @@ const Tasks = () => {
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 {/* Status */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">
                     Статус
                   </label>
                   <select
@@ -824,7 +824,7 @@ const Tasks = () => {
 
                 {/* Priority */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">
                     Приоритет
                   </label>
                   <select
@@ -841,7 +841,7 @@ const Tasks = () => {
 
                 {/* Assignee */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">
                     Исполнитель
                   </label>
                   <select
@@ -862,7 +862,7 @@ const Tasks = () => {
 
                 {/* Tags */}
                 <div>
-                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2">
+                  <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">
                     Теги
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -893,11 +893,11 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Всего</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Всего</p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.total}</p>
               </div>
               <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
-                <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                <FileText className="w-5 h-5 text-gray-600 dark:text-gray-400 dark:text-gray-300" />
               </div>
             </div>
           </div>
@@ -905,7 +905,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">В работе</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">В работе</p>
                 <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">{taskStats.inProgress}</p>
               </div>
               <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/20">
@@ -917,7 +917,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Выполнено</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Выполнено</p>
                 <p className="text-2xl font-bold text-green-600 dark:text-green-400">{taskStats.completed}</p>
               </div>
               <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/20">
@@ -929,7 +929,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">На проверке</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">На проверке</p>
                 <p className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
                   {tasks.filter(t => t.status === 'review').length}
                 </p>
@@ -943,7 +943,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Высокий приоритет</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Высокий приоритет</p>
                 <p className="text-2xl font-bold text-red-600 dark:text-red-400">{taskStats.highPriority}</p>
               </div>
               <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/20">
@@ -955,7 +955,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Мои задачи</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Мои задачи</p>
                 <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{taskStats.assignedToMe}</p>
               </div>
               <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/20">
@@ -967,7 +967,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Просрочено</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Просрочено</p>
                 <p className="text-2xl font-bold text-red-600 dark:text-red-400">{taskStats.overdue}</p>
               </div>
               <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/20">
@@ -979,7 +979,7 @@ const Tasks = () => {
           <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Выполнено</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Выполнено</p>
                 <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{taskStats.completionRate}%</p>
               </div>
               <div className="p-2 rounded-lg bg-teal-100 dark:bg-teal-900/20">
@@ -994,12 +994,12 @@ const Tasks = () => {
           <div className="flex space-x-6 overflow-x-auto pb-6">
             {statusColumns.map((column) => (
               <div key={column.id} className="flex-shrink-0 w-80">
-                <div className={`p-4 rounded-t-2xl ${column.color} ${column.textColor}`}>
+                <div className={`p-5 rounded-t-2xl ${column.color} ${column.textColor}`}>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       {column.icon}
-                      <h3 className="font-semibold">{column.title}</h3>
-                      <span className="text-sm bg-white/50 dark:bg-black/50 px-2 py-1 rounded-full font-medium">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white tracking-tight">{column.title}</h3>
+                      <span className="text-sm bg-white/70 dark:bg-black/50 px-2 py-1 rounded-full font-semibold text-gray-900 dark:text-gray-200">
                         {getTasksByStatus(column.id).length}
                       </span>
                     </div>
@@ -1068,7 +1068,7 @@ const Tasks = () => {
                                   ) : null;
                                 })}
                                 {task.tags.length > 2 && (
-                                  <span className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400">
+                                  <span className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 dark:text-gray-300">
                                     +{task.tags.length - 2}
                                   </span>
                                 )}
@@ -1082,7 +1082,7 @@ const Tasks = () => {
 
                             {/* Task Description */}
                             {task.description && (
-                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 dark:text-gray-300">
                                 {task.description}
                               </p>
                             )}
@@ -1090,7 +1090,7 @@ const Tasks = () => {
                             {/* Time Progress Bar */}
                             {(task.timeEstimate || task.timeSpent) && (
                               <div className="mb-4">
-                                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1">
+                                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-1 dark:text-gray-300 dark:text-gray-300">
                                   <span>Затрачено: {formatTime(task.timeSpent)}</span>
                                   {task.timeEstimate && (
                                     <span>План: {formatTime(task.timeEstimate)}</span>
@@ -1102,7 +1102,7 @@ const Tasks = () => {
                                     style={{ width: `${calculateProgress(task)}%` }}
                                   ></div>
                                 </div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 text-right mt-1">
+                                <div className="text-xs text-gray-500 dark:text-gray-400 text-right mt-1 dark:text-gray-300 dark:text-gray-300">
                                   {calculateProgress(task)}%
                                 </div>
                               </div>
@@ -1226,7 +1226,7 @@ const Tasks = () => {
                                     e.stopPropagation();
                                     // Handle dropdown
                                   }}
-                                  className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                                  className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 dark:text-gray-400 dark:text-gray-300"
                                 >
                                   <MoreVertical className="w-4 h-4" />
                                 </button>
@@ -1239,7 +1239,7 @@ const Tasks = () => {
                   </AnimatePresence>
                   
                   {getTasksByStatus(column.id).length === 0 && (
-                    <div className="text-center py-12 text-gray-400 dark:text-gray-500">
+                    <div className="text-center py-12 text-gray-400 dark:text-gray-500 dark:text-gray-300 dark:text-gray-300">
                       <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
                         <Plus className="w-6 h-6" />
                       </div>
@@ -1266,7 +1266,7 @@ const Tasks = () => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-gray-700">
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">
                       <div className="flex items-center">
                         <input 
                           type="checkbox" 
@@ -1276,13 +1276,13 @@ const Tasks = () => {
                         />
                       </div>
                     </th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Задача</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Срок</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Приоритет</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Статус</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Время</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Исполнитель</th>
-                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400">Действия</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Задача</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Срок</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Приоритет</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Статус</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Время</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Исполнитель</th>
+                    <th className="text-left py-4 px-6 text-sm font-medium text-gray-600 dark:text-gray-400 dark:text-gray-300">Действия</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1303,7 +1303,7 @@ const Tasks = () => {
                           <div>
                             <h4 className="font-medium text-gray-900 dark:text-white">{task.title}</h4>
                             {task.description && (
-                              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-1">
+                              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1 line-clamp-1 dark:text-gray-300 dark:text-gray-300">
                                 {task.description}
                               </p>
                             )}
@@ -1338,12 +1338,12 @@ const Tasks = () => {
                           </select>
                         </td>
                         <td className="py-4 px-6">
-                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                          <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                             <div className="flex items-center space-x-2">
                               <Timer className="w-4 h-4" />
                               <span>{formatTime(task.timeSpent)}</span>
                               {task.timeEstimate && (
-                                <span className="text-gray-400">/ {formatTime(task.timeEstimate)}</span>
+                                <span className="text-gray-400 dark:text-gray-300">/ {formatTime(task.timeEstimate)}</span>
                               )}
                             </div>
                             {task.timeEstimate && (
@@ -1365,7 +1365,7 @@ const Tasks = () => {
                               <span className="text-sm">{task.assignee.username}</span>
                             </div>
                           ) : (
-                            <span className="text-sm text-gray-400">Не назначен</span>
+                            <span className="text-sm text-gray-400 dark:text-gray-300">Не назначен</span>
                           )}
                         </td>
                         <td className="py-4 px-6">
@@ -1375,7 +1375,7 @@ const Tasks = () => {
                                 {task.status === 'new' && !activeTimeTrackers[task.id] && (
                                   <button
                                     onClick={() => handleStartWork(task.id)}
-                                    className="p-1.5 text-gray-400 hover:text-green-600 dark:hover:text-green-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    className="p-1.5 text-gray-400 hover:text-green-600 dark:hover:text-green-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                                     title="Начать работу"
                                   >
                                     <PlayCircle className="w-4 h-4" />
@@ -1384,7 +1384,7 @@ const Tasks = () => {
                                 {activeTimeTrackers[task.id] && (
                                   <button
                                     onClick={() => handleStopWork(task.id)}
-                                    className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                                     title="Остановить работу"
                                   >
                                     <StopCircle className="w-4 h-4" />
@@ -1393,7 +1393,7 @@ const Tasks = () => {
                                 {task.status === 'review' ? (
                                   <button
                                     onClick={() => handleSubmitForReview(task.id)}
-                                    className="p-1.5 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    className="p-1.5 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                                     title="Отправить на проверку"
                                   >
                                     <CheckCircle className="w-4 h-4" />
@@ -1401,7 +1401,7 @@ const Tasks = () => {
                                 ) : (
                                   <button
                                     onClick={() => setCompletingTask(task)}
-                                    className="p-1.5 text-gray-400 hover:text-green-600 dark:hover:text-green-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                    className="p-1.5 text-gray-400 hover:text-green-600 dark:hover:text-green-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                                     title="Завершить задачу"
                                   >
                                     <CheckCircle className="w-4 h-4" />
@@ -1411,14 +1411,14 @@ const Tasks = () => {
                             )}
                             <button
                               onClick={() => setShowTaskDetail(task)}
-                              className="p-1.5 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                              className="p-1.5 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                             >
                               <Eye className="w-4 h-4" />
                             </button>
                             {canEditTask(task) && (
                               <button
                                 onClick={() => setEditingTask(task)}
-                                className="p-1.5 text-gray-400 hover:text-yellow-600 dark:hover:text-yellow-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                className="p-1.5 text-gray-400 hover:text-yellow-600 dark:hover:text-yellow-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                               >
                                 <Edit2 className="w-4 h-4" />
                               </button>
@@ -1426,7 +1426,7 @@ const Tasks = () => {
                             {(isAdmin || isAssignedToMe) && (
                               <button
                                 onClick={() => setTimeTrackingModal(task)}
-                                className="p-1.5 text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                className="p-1.5 text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                               >
                                 <Timer className="w-4 h-4" />
                               </button>
@@ -1434,7 +1434,7 @@ const Tasks = () => {
                             {isAdmin && (
                               <button
                                 onClick={() => handleDeleteTask(task.id)}
-                                className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                                className="p-1.5 text-gray-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </button>
@@ -1488,7 +1488,7 @@ const Tasks = () => {
                       <input
                         type="text"
                         required
-                        className="w-full px-4 py-3 text-lg font-medium bg-gray-50 dark:bg-gray-700 border-0 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none placeholder-gray-400 dark:placeholder-gray-500"
+                        className="w-full px-4 py-3 text-lg font-medium text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border-0 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none placeholder-gray-400 dark:placeholder-gray-500"
                         placeholder="Что нужно сделать?"
                         value={newTask.title}
                         onChange={(e) => setNewTask({...newTask, title: e.target.value})}
@@ -1501,7 +1501,7 @@ const Tasks = () => {
                         Описание
                       </label>
                       <textarea
-                        className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border-0 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none resize-none min-h-[120px] placeholder-gray-400 dark:placeholder-gray-500"
+                        className="w-full px-4 py-3 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border-0 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none resize-none min-h-[120px] placeholder-gray-400 dark:placeholder-gray-500"
                         placeholder="Опишите задачу подробнее..."
                         value={newTask.description}
                         onChange={(e) => setNewTask({...newTask, description: e.target.value})}
@@ -1515,7 +1515,7 @@ const Tasks = () => {
                         </label>
                         <select
                           required
-                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
                           value={newTask.assignedTo}
                           onChange={(e) => setNewTask({...newTask, assignedTo: e.target.value})}
                         >
@@ -1534,7 +1534,7 @@ const Tasks = () => {
                         </label>
                         <input
                           type="date"
-                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition"
                           value={newTask.dueDate}
                           onChange={(e) => setNewTask({...newTask, dueDate: e.target.value})}
                         />
@@ -1550,7 +1550,7 @@ const Tasks = () => {
                           type="number"
                           min="0"
                           step="15"
-                          className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                          className="w-full px-4 py-3 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                           placeholder="Например: 120 (2 часа)"
                           value={newTask.timeEstimate}
                           onChange={(e) => setNewTask({...newTask, timeEstimate: e.target.value})}
@@ -1574,7 +1574,7 @@ const Tasks = () => {
                             >
                               <div className="flex flex-col items-center">
                                 {priorityColors[priority].icon}
-                                <span className="mt-1 text-xs font-medium capitalize">
+                                <span className="mt-1 text-xs font-medium capitalize text-gray-900 dark:text-white">
                                   {priority === 'high' ? 'Высокий' : 
                                    priority === 'medium' ? 'Средний' : 'Низкий'}
                                 </span>
@@ -1606,7 +1606,7 @@ const Tasks = () => {
                             }`}
                           >
                             <div className={`w-2 h-2 rounded-full ${newTask.tags.includes(tag.id) ? 'bg-white' : tag.color}`}></div>
-                            <span>{tag.label}</span>
+                            <span className="text-gray-900 dark:text-white">{tag.label}</span>
                           </button>
                         ))}
                       </div>
@@ -1617,7 +1617,7 @@ const Tasks = () => {
                     <button
                       type="button"
                       onClick={() => setShowCreateModal(false)}
-                      className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+                      className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors dark:text-gray-200 dark:text-gray-300"
                     >
                       Отмена
                     </button>
@@ -1694,7 +1694,7 @@ const Tasks = () => {
                       className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
                       placeholder="Например: 120 (2 часа)"
                     />
-                    <div className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                    <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                       {completionData.timeSpent > 0 && (
                         <span>
                           Это {Math.floor(completionData.timeSpent / 60)} ч {completionData.timeSpent % 60} мин
@@ -1742,7 +1742,7 @@ const Tasks = () => {
                   <button
                     type="button"
                     onClick={() => setCompletingTask(null)}
-                    className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+                    className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors dark:text-gray-200 dark:text-gray-300"
                   >
                     Отмена
                   </button>
@@ -1794,7 +1794,7 @@ const Tasks = () => {
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Запланировано</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Запланировано</p>
                         <p className="text-lg font-semibold text-gray-900 dark:text-white">
                           {timeTrackingModal.timeEstimate 
                             ? formatTime(timeTrackingModal.timeEstimate)
@@ -1803,7 +1803,7 @@ const Tasks = () => {
                         </p>
                       </div>
                       <div className="p-3 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Затрачено</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Затрачено</p>
                         <p className="text-lg font-semibold text-gray-900 dark:text-white">
                           {formatTime(timeTrackingModal.timeSpent)}
                         </p>
@@ -1906,7 +1906,7 @@ const Tasks = () => {
                   <button
                     type="button"
                     onClick={() => setTimeTrackingModal(null)}
-                    className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors"
+                    className="px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors dark:text-gray-200 dark:text-gray-300"
                   >
                     Отмена
                   </button>
@@ -1956,7 +1956,7 @@ const Tasks = () => {
                            showTaskDetail.priority === 'medium' ? 'Средний приоритет' : 'Низкий приоритет'}
                         </span>
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                      <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                         Статус: <span className="font-medium capitalize">
                           {showTaskDetail.status === 'completed' ? 'Выполнено' : 
                            showTaskDetail.status === 'in-progress' ? 'В работе' : 
@@ -1964,7 +1964,7 @@ const Tasks = () => {
                         </span>
                       </div>
                       {showTaskDetail.timeSpent > 0 && (
-                        <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center">
+                        <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center dark:text-gray-300">
                           <Timer className="w-4 h-4 mr-1" />
                           {formatTime(showTaskDetail.timeSpent)}
                         </div>
@@ -1996,7 +1996,7 @@ const Tasks = () => {
                           {showTaskDetail.description}
                         </p>
                       ) : (
-                        <p className="text-gray-400 dark:text-gray-500 italic p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                        <p className="text-gray-400 dark:text-gray-500 italic p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl dark:text-gray-300 dark:text-gray-300">
                           Описание отсутствует
                         </p>
                       )}
@@ -2012,19 +2012,19 @@ const Tasks = () => {
                         <div className="bg-gradient-to-r from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 rounded-xl p-6">
                           <div className="grid grid-cols-3 gap-4 mb-6">
                             <div className="text-center">
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Запланировано</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Запланировано</p>
                               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {formatTime(showTaskDetail.timeEstimate)}
                               </p>
                             </div>
                             <div className="text-center">
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Затрачено</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Затрачено</p>
                               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {formatTime(showTaskDetail.timeSpent)}
                               </p>
                             </div>
                             <div className="text-center">
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Прогресс</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Прогресс</p>
                               <p className="text-2xl font-bold text-gray-900 dark:text-white">
                                 {calculateProgress(showTaskDetail)}%
                               </p>
@@ -2148,7 +2148,7 @@ const Tasks = () => {
                             day: 'numeric'
                           })}
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mt-2 dark:text-gray-300">
                           {formatDate(showTaskDetail.dueDate)}
                         </div>
                       </div>
@@ -2166,15 +2166,15 @@ const Tasks = () => {
                             <div className="font-medium text-gray-900 dark:text-white">
                               {showTaskDetail.assignee.username}
                             </div>
-                            <div className="text-sm text-gray-600 dark:text-gray-400">
+                            <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                               {showTaskDetail.assignee.email}
                             </div>
                           </div>
                         </div>
                       ) : (
                         <div className="text-center py-4">
-                          <User className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                          <p className="text-gray-500 dark:text-gray-400">Не назначен</p>
+                          <User className="w-8 h-8 text-gray-400 mx-auto mb-2 dark:text-gray-300" />
+                          <p className="text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Не назначен</p>
                         </div>
                       )}
                     </div>
@@ -2245,7 +2245,7 @@ const Tasks = () => {
                     </div>
 
                     {/* Created Date */}
-                    <div className="text-xs text-gray-500 dark:text-gray-400 text-center pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="text-xs text-gray-500 dark:text-gray-400 text-center pt-4 border-t border-gray-200 dark:border-gray-700 dark:text-gray-300 dark:text-gray-300">
                       Создано {new Date(showTaskDetail.createdAt).toLocaleDateString('ru-RU')}
                       {showTaskDetail.completedAt && (
                         <div className="mt-1">

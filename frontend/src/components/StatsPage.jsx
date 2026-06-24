@@ -32,7 +32,7 @@ const StatsPage = () => {
     <div className="container mx-auto px-4 py-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Статистика</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-300">
           {isAdmin ? `Общая статистика задач и прогресс за ${new Date().getMonth() + 1} месяц` : 'Ваша персональная статистика задач'}
         </p>
       </motion.div>
@@ -55,7 +55,7 @@ const StatsPage = () => {
             >
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{label}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">{label}</p>
                   <p className="text-3xl font-semibold text-gray-900 dark:text-white">
                     {stats ? (key === 'completionRate' ? `${stats[key] || 0}%` : stats[key] ?? 0) : '—'}
                   </p>
@@ -64,13 +64,13 @@ const StatsPage = () => {
                   <Icon className="w-6 h-6" />
                 </div>
               </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{key === 'completionRate' ? 'Процент завершения задач' : 'Актуальные данные'}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">{key === 'completionRate' ? 'Процент завершения задач' : 'Актуальные данные'}</p>
             </motion.div>
           ))}
       </div>
 
       {loading ? (
-        <div className="rounded-3xl bg-white dark:bg-gray-900 p-8 shadow-lg border border-gray-100 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400">
+        <div className="rounded-3xl bg-white dark:bg-gray-900 p-8 shadow-lg border border-gray-100 dark:border-gray-700 text-center text-gray-600 dark:text-gray-400 dark:text-gray-300">
           Загрузка статистики...
         </div>
       ) : error ? (
@@ -81,7 +81,7 @@ const StatsPage = () => {
         <div className="grid gap-6 xl:grid-cols-3">
           <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Динамика за неделю</h2>
-            <ul className="space-y-3 text-gray-600 dark:text-gray-400">
+            <ul className="space-y-3 text-gray-600 dark:text-gray-400 dark:text-gray-300">
               {(stats?.lastWeek || []).map((item, index) => (
                 <li key={index} className="rounded-2xl p-4 bg-gray-50 dark:bg-gray-800">
                   <div className="text-sm font-medium text-gray-900 dark:text-white">{item.date}</div>
@@ -94,7 +94,7 @@ const StatsPage = () => {
 
           <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Подробности</h2>
-            <div className="space-y-3 text-gray-600 dark:text-gray-400">
+            <div className="space-y-3 text-gray-600 dark:text-gray-400 dark:text-gray-300">
               <p>Пользователь: <span className="font-medium text-gray-900 dark:text-white">{user.username}</span></p>
               <p>Роль: <span className="capitalize font-medium text-gray-900 dark:text-white">{user.role}</span></p>
               <p>Обновлено: <span className="font-medium text-gray-900 dark:text-white">{new Date().toLocaleDateString('ru-RU')}</span></p>

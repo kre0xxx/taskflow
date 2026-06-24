@@ -11,7 +11,7 @@ const SettingsPage = () => {
     <div className="container mx-auto px-4 py-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Настройки</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">Быстрый доступ к основным настройкам приложения.</p>
+        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-300">Быстрый доступ к основным настройкам приложения.</p>
       </motion.div>
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -22,7 +22,7 @@ const SettingsPage = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Тема</h2>
-              <p className="text-gray-600 dark:text-gray-400">Переключение светлой и тёмной темы.</p>
+              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Переключение светлой и тёмной темы.</p>
             </div>
           </div>
           <button
@@ -41,7 +41,7 @@ const SettingsPage = () => {
             </div>
             <div>
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Telegram</h2>
-              <p className="text-gray-600 dark:text-gray-400">Перейдите к настройкам уведомлений Telegram.</p>
+              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Перейдите к настройкам уведомлений Telegram.</p>
             </div>
           </div>
           <Link

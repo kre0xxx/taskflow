@@ -22,7 +22,7 @@ const PrivateRoute = ({ children }) => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Загрузка...</p>
+          <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Загрузка...</p>
         </div>
       </div>
     );
@@ -116,11 +116,11 @@ const App = () => {
                   </div>
                   <span className="text-lg font-bold text-gray-900 dark:text-white">TaskFlow</span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 dark:text-gray-300">
                   Система управления задачами с Telegram-уведомлениями
                 </p>
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
+              <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                 <p>© {new Date().getFullYear()} TaskFlow. Все права защищены.</p>
                 <p className="mt-1">Версия 1.0.0</p>
               </div>

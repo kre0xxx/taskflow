@@ -372,7 +372,7 @@ const TelegramSettings = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Загрузка настроек...</p>
+          <p className="text-gray-600 dark:text-gray-400 dark:text-gray-300">Загрузка настроек...</p>
         </div>
       </div>
     );
@@ -390,7 +390,7 @@ const TelegramSettings = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Telegram Уведомления</h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">
+              <p className="text-gray-600 dark:text-gray-400 mt-2 dark:text-gray-300">
                 Настройте получение уведомлений о выполнении задач в Telegram
               </p>
             </div>
@@ -488,11 +488,11 @@ const TelegramSettings = () => {
 
                         <div className="grid grid-cols-3 gap-4">
                           <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Chat ID</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 dark:text-gray-300">Chat ID</div>
                             <div className="font-mono text-gray-900 dark:text-white break-all">{telegramStatus.chatId}</div>
                           </div>
                           <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Последнее уведомление</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 dark:text-gray-300">Последнее уведомление</div>
                             <div className="text-gray-900 dark:text-white">
                               {telegramStatus.lastNotification 
                                 ? new Date(telegramStatus.lastNotification).toLocaleDateString('ru-RU')
@@ -501,7 +501,7 @@ const TelegramSettings = () => {
                             </div>
                           </div>
                           <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Статус</div>
+                            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 dark:text-gray-300">Статус</div>
                             <div className="flex items-center">
                               <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                               <span className="text-green-700 dark:text-green-400 font-medium">Активен</span>
@@ -526,7 +526,7 @@ const TelegramSettings = () => {
                             </div>
                             <div>
                               <h3 className="font-medium text-gray-900 dark:text-white">Получайте уведомления о задачах</h3>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                              <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                                 Привяжите Telegram для мгновенных уведомлений о завершении задач, дедлайнах и статусах
                               </p>
                             </div>
@@ -539,7 +539,7 @@ const TelegramSettings = () => {
                               Chat ID из Telegram
                             </label>
                             <div className="relative">
-                              <LinkIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                              <LinkIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300" size={20} />
                               <input
                                 type="text"
                                 value={chatIdInput}
@@ -548,7 +548,7 @@ const TelegramSettings = () => {
                                 className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-400 dark:placeholder-gray-500"
                               />
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 dark:text-gray-300 dark:text-gray-300">
                               Получите Chat ID, начав диалог с ботом @TaskManagerBot
                             </p>
                           </div>
@@ -578,7 +578,7 @@ const TelegramSettings = () => {
                         <div className="text-blue-600 dark:text-blue-400 text-lg font-bold">1</div>
                       </div>
                       <h3 className="font-medium text-gray-900 dark:text-white mb-2">Найдите бота</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                         Найдите @TaskManagerBot в Telegram
                       </p>
                     </div>
@@ -588,7 +588,7 @@ const TelegramSettings = () => {
                         <div className="text-purple-600 dark:text-purple-400 text-lg font-bold">2</div>
                       </div>
                       <h3 className="font-medium text-gray-900 dark:text-white mb-2">Начните диалог</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                         Отправьте команду /start боту
                       </p>
                     </div>
@@ -598,7 +598,7 @@ const TelegramSettings = () => {
                         <div className="text-green-600 dark:text-green-400 text-lg font-bold">3</div>
                       </div>
                       <h3 className="font-medium text-gray-900 dark:text-white mb-2">Получите Chat ID</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                         Бот отправит вам ваш Chat ID
                       </p>
                     </div>
@@ -607,10 +607,10 @@ const TelegramSettings = () => {
                   <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <Smartphone className="w-5 h-5 text-gray-400" />
+                        <Smartphone className="w-5 h-5 text-gray-400 dark:text-gray-300" />
                         <div>
                           <div className="font-medium text-gray-900 dark:text-white">Ссылка на бота</div>
-                          <div className="text-sm text-gray-600 dark:text-gray-400 truncate max-w-md">{botUrl}</div>
+                          <div className="text-sm text-gray-600 dark:text-gray-400 truncate max-w-md dark:text-gray-300">{botUrl}</div>
                         </div>
                       </div>
                       <button
@@ -632,14 +632,14 @@ const TelegramSettings = () => {
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white">Статистика задач</h2>
-                    <BarChart className="w-6 h-6 text-gray-400" />
+                    <BarChart className="w-6 h-6 text-gray-400 dark:text-gray-300" />
                   </div>
 
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Всего задач</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Всего задач</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.total}</p>
                         </div>
                         <FileText className="w-8 h-8 text-blue-500" />
@@ -649,7 +649,7 @@ const TelegramSettings = () => {
                     <div className="bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Выполнено</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Выполнено</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.completed}</p>
                         </div>
                         <CheckSquare className="w-8 h-8 text-green-500" />
@@ -659,7 +659,7 @@ const TelegramSettings = () => {
                     <div className="bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">В работе</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">В работе</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.inProgress}</p>
                         </div>
                         <PlayCircle className="w-8 h-8 text-purple-500" />
@@ -669,7 +669,7 @@ const TelegramSettings = () => {
                     <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Высокий приоритет</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Высокий приоритет</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.highPriority}</p>
                         </div>
                         <Target className="w-8 h-8 text-yellow-500" />
@@ -679,7 +679,7 @@ const TelegramSettings = () => {
                     <div className="bg-gradient-to-r from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Просрочено</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Просрочено</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.overdue}</p>
                         </div>
                         <Clock className="w-8 h-8 text-red-500" />
@@ -689,7 +689,7 @@ const TelegramSettings = () => {
                     <div className="bg-gradient-to-r from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 p-4 rounded-xl">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">Процент выполнения</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Процент выполнения</p>
                           <p className="text-2xl font-bold text-gray-900 dark:text-white">{taskStats.completionRate}%</p>
                         </div>
                         <TrendingUp className="w-8 h-8 text-teal-500" />
@@ -701,14 +701,14 @@ const TelegramSettings = () => {
                     <div className="flex items-center justify-between">
                       <div>
                         <h3 className="font-medium text-gray-900 dark:text-white">Отчет по задачам</h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">Обновите статистику</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Обновите статистику</p>
                       </div>
                       <button
                         onClick={fetchTaskStats}
                         className="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
                       >
                         <RefreshCw className="w-4 h-4" />
-                        <span>Обновить</span>
+                        <span className="text-gray-900 dark:text-white">Обновить</span>
                       </button>
                     </div>
                   </div>
@@ -726,7 +726,7 @@ const TelegramSettings = () => {
                         </div>
                         <div className="flex-1">
                           <h3 className="font-medium text-gray-900 dark:text-white">Автоматические уведомления</h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                             Система автоматически отправляет уведомления при завершении задач, изменении статусов и приближении дедлайнов
                           </p>
                         </div>
@@ -740,7 +740,7 @@ const TelegramSettings = () => {
                         </div>
                         <div className="flex-1">
                           <h3 className="font-medium text-gray-900 dark:text-white">Учет времени</h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                             Отслеживайте время, затраченное на задачи, и получайте уведомления о прогрессе
                           </p>
                         </div>
@@ -754,7 +754,7 @@ const TelegramSettings = () => {
                         </div>
                         <div className="flex-1">
                           <h3 className="font-medium text-gray-900 dark:text-white">Командные уведомления</h3>
-                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                          <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                             Администраторы получают уведомления о завершении задач всех членов команды
                           </p>
                         </div>
@@ -786,7 +786,7 @@ const TelegramSettings = () => {
 
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">
                           Отправьте тестовое уведомление для проверки подключения
                         </p>
                       </div>
@@ -863,7 +863,7 @@ const TelegramSettings = () => {
                         placeholder="https://ваш-домен/api/webhook"
                         className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition placeholder-gray-400 dark:placeholder-gray-500"
                       />
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 dark:text-gray-300 dark:text-gray-300">
                         URL для получения обратных вызовов от Telegram
                       </p>
                     </div>
@@ -889,7 +889,7 @@ const TelegramSettings = () => {
                   <div className="space-y-4">
                     <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                       <h4 className="font-medium text-gray-900 dark:text-white mb-2">Завершение задачи</h4>
-                      <pre className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-wrap font-mono">
+                      <pre className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-wrap font-mono dark:text-gray-300">
 {`🎉 <b>Поздравляем!</b>
 
 Вы успешно завершили задачу "{task.title}"!
@@ -903,7 +903,7 @@ const TelegramSettings = () => {
 
                     <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
                       <h4 className="font-medium text-gray-900 dark:text-white mb-2">Назначение задачи</h4>
-                      <pre className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-wrap font-mono">
+                      <pre className="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-wrap font-mono dark:text-gray-300">
 {`📋 <b>Новая задача назначена</b>
 
 <b>Задача:</b> {task.title}
@@ -930,7 +930,7 @@ const TelegramSettings = () => {
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white">Настройки уведомлений</h2>
-                <Bell className="w-6 h-6 text-gray-400" />
+                <Bell className="w-6 h-6 text-gray-400 dark:text-gray-300" />
               </div>
 
               <div className="space-y-4">
@@ -951,7 +951,7 @@ const TelegramSettings = () => {
                       </div>
                       <div>
                         <div className="font-medium text-gray-900 dark:text-white">{setting.label}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">{setting.description}</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">{setting.description}</div>
                       </div>
                     </div>
                     <button
@@ -968,7 +968,7 @@ const TelegramSettings = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="font-medium text-gray-900 dark:text-white">Тестовое уведомление</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">Отправить пример уведомления</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-300">Отправить пример уведомления</div>
                   </div>
                   <button 
                     onClick={sendTestNotification}
@@ -1014,11 +1014,11 @@ const TelegramSettings = () => {
                             <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                           )}
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1 dark:text-gray-300">
                           {notification.description}
                         </p>
                         <div className="flex items-center justify-between mt-2">
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                          <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
                             {notification.time}
                           </div>
                           {notification.taskId && (
@@ -1035,8 +1035,8 @@ const TelegramSettings = () => {
 
               {notifications.length === 0 && (
                 <div className="text-center py-8">
-                  <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500 dark:text-gray-400">Уведомлений пока нет</p>
+                  <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-3 dark:text-gray-300" />
+                  <p className="text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Уведомлений пока нет</p>
                 </div>
               )}
             </div>
@@ -1086,24 +1086,24 @@ const TelegramSettings = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Имя пользователя</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">Имя пользователя</div>
                 <div className="text-lg font-medium text-gray-900 dark:text-white">{user.username}</div>
               </div>
               
               <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Email</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">Email</div>
                 <div className="text-lg font-medium text-gray-900 dark:text-white">{user.email}</div>
               </div>
               
               <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Роль</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">Роль</div>
                 <div className="text-lg font-medium text-gray-900 dark:text-white capitalize">
                   {user.role === 'admin' ? 'Администратор' : 'Пользователь'}
                 </div>
               </div>
               
               <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Статус уведомлений</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-2 dark:text-gray-300">Статус уведомлений</div>
                 <div className="flex items-center">
                   <div className={`w-2 h-2 rounded-full mr-2 ${telegramStatus.isLinked ? 'bg-green-500' : 'bg-red-500'}`}></div>
                   <span className="text-lg font-medium text-gray-900 dark:text-white">
