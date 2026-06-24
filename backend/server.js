@@ -8,8 +8,39 @@ const notificationScheduler = require('./services/notificationScheduler');
 const app = express();
 const PORT = process.env.PORT || 5002;
 
+// CORS configuration for tunnel support
+const getCorsOptions = () => {
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:5175',
+    'http://127.0.0.1:5175',
+    'http://127.0.0.1:3000',
+    process.env.VITE_FRONTEND_URL || 'http://localhost:5175'
+  ];
+  
+  // Allow tunnel URLs: *.tunnel.vscode.dev and similar patterns
+  const tunnelPattern = /^https?:\/\/[a-zA-Z0-9-]+\.([a-zA-Z0-9-]+\.)*vscode\.dev(:[0-9]+)?$/;
+  
+  return {
+    origin: (origin, callback) => {
+      // Allow requests without origin (mobile apps, curl requests, etc.)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes(origin) || tunnelPattern.test(origin)) {
+        callback(null, true);
+      } else {
+        console.warn(`CORS blocked request from: ${origin}`);
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  };
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(getCorsOptions()));
 app.use(express.json());
 
 // Routes
@@ -47,9 +78,11 @@ db.sequelize.authenticate()
     notificationScheduler.start();
     console.log('Notification scheduler started');
     
-    const server = app.listen(PORT, () => {
+    const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server is running on port ${PORT}`);
       console.log(`Health check: http://localhost:${PORT}/api/health`);
+      console.log(`Local network access: http://127.0.0.1:${PORT}/api/health`);
+      console.log(`VSCode Tunnel support enabled`);
     });
 
     server.on('error', (err) => {
