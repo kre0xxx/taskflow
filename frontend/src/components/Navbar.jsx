@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home, 
   CheckSquare, 
-  Bot, 
+  // Bot, // Временно отключено
   LogOut, 
   User, 
   Moon, 
@@ -50,7 +50,7 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// 1. Типы уведомлений и их иконки
+// 1. Типы уведомлений и их иконки (без Telegram)
 const NOTIFICATION_TYPES = {
   task_assigned: {
     icon: <CheckSquare size={16} />,
@@ -81,15 +81,15 @@ const NOTIFICATION_TYPES = {
     icon: <Info size={16} />,
     color: 'bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400',
     label: 'Системное'
-  },
-  telegram: {
-    icon: <Bot size={16} />,
-    color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400',
-    label: 'Telegram'
   }
+  // telegram: { // Временно отключено
+  //   icon: <Bot size={16} />,
+  //   color: 'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400',
+  //   label: 'Telegram'
+  // }
 };
 
-// 2. Компонент для отображения уведомлений
+// 2. Компонент для отображения уведомлений (без Telegram)
 const NotificationsDropdown = ({ 
   isOpen, 
   onClose, 
@@ -144,7 +144,7 @@ const NotificationsDropdown = ({
                 </div>
                 <div>
                   <h3 className="font-bold text-lg text-gray-900 dark:text-white">Уведомления</h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
                     {notifications.length} всего, {unreadCount} непрочитанных
                   </p>
                 </div>
@@ -162,7 +162,7 @@ const NotificationsDropdown = ({
 
           <div className="max-h-[500px] overflow-y-auto">
             {notifications.length === 0 ? (
-              <div className="p-8 text-center text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
+              <div className="p-8 text-center text-gray-500 dark:text-gray-400">
                 <Bell className="mx-auto mb-2 opacity-50" size={32} />
                 <p className="font-medium mb-1">Нет уведомлений</p>
                 <p className="text-sm">Здесь появятся ваши уведомления</p>
@@ -187,7 +187,7 @@ const NotificationsDropdown = ({
                             <h4 className="font-medium text-gray-900 dark:text-white">
                               {notification.title}
                             </h4>
-                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 dark:text-gray-400">
+                            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                               {notification.message || notification.description}
                             </p>
                           </div>
@@ -198,11 +198,11 @@ const NotificationsDropdown = ({
                         
                         <div className="flex items-center justify-between mt-2">
                           <div className="flex items-center space-x-3">
-                            <span className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
+                            <span className="text-xs text-gray-500 dark:text-gray-400">
                               {formatTime(notification.timestamp || notification.time)}
                             </span>
                             {notification.user && (
-                              <span className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">
+                              <span className="text-xs text-gray-500 dark:text-gray-400">
                                 • {notification.user}
                               </span>
                             )}
@@ -214,11 +214,12 @@ const NotificationsDropdown = ({
                                 Задача
                               </span>
                             )}
-                            {notification.telegram && (
+                            {/* Telegram-тег временно отключен */}
+                            {/* {notification.telegram && (
                               <span className="text-xs px-2 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 rounded">
                                 Telegram
                               </span>
-                            )}
+                            )} */}
                           </div>
                         </div>
                       </div>
@@ -240,7 +241,7 @@ const NotificationsDropdown = ({
               </Link>
               <button
                 onClick={onClose}
-                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 dark:text-gray-300 dark:text-gray-300 dark:text-gray-300"
+                className="text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
               >
                 Закрыть
               </button>
@@ -262,15 +263,16 @@ const Navbar = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Навигация (без Telegram)
   const navItems = [
     { path: '/', label: 'Главная', icon: <Home size={20} /> },
     { path: '/tasks', label: 'Задачи', icon: <CheckSquare size={20} /> },
     ...(isAdmin ? [{ path: '/users', label: 'Пользователи', icon: <Users size={20} /> }] : []),
-    { path: '/telegram', label: 'Telegram', icon: <Bot size={20} /> },
+    // { path: '/telegram', label: 'Telegram', icon: <Bot size={20} /> }, // Временно отключено
     { path: '/stats', label: 'Статистика', icon: <BarChart3 size={20} /> },
   ];
 
-  // 3. Функция для загрузки уведомлений из разных источников
+  // 3. Функция для загрузки уведомлений (без Telegram)
   const fetchNotifications = async () => {
     if (!user) {
       setLoading(false);
@@ -293,18 +295,18 @@ const Navbar = () => {
         taskId: activity.taskId || null
       }));
 
-      // Загружаем уведомления из Telegram
-      const telegramResponse = await axiosInstance.get('/telegram/notifications');
-      const telegramNotifications = telegramResponse.data.map((notif, index) => ({
-        id: `telegram_${notif.id || index}`,
-        type: notif.type || 'telegram',
-        title: notif.taskTitle || 'Уведомление Telegram',
-        message: notif.message || notif.description,
-        timestamp: notif.createdAt || notif.dueDate || new Date().toISOString(),
-        read: notif.read || false,
-        telegram: true,
-        taskId: notif.taskId
-      }));
+      // Загружаем уведомления из Telegram (временно отключено)
+      // const telegramResponse = await axiosInstance.get('/telegram/notifications');
+      // const telegramNotifications = telegramResponse.data.map((notif, index) => ({
+      //   id: `telegram_${notif.id || index}`,
+      //   type: notif.type || 'telegram',
+      //   title: notif.taskTitle || 'Уведомление Telegram',
+      //   message: notif.message || notif.description,
+      //   timestamp: notif.createdAt || notif.dueDate || new Date().toISOString(),
+      //   read: notif.read || false,
+      //   telegram: true,
+      //   taskId: notif.taskId
+      // }));
 
       // Загружаем системные уведомления (например, дедлайны)
       const tasksResponse = await axiosInstance.get('/tasks/upcoming-deadlines');
@@ -318,10 +320,10 @@ const Navbar = () => {
         taskId: task.id
       }));
 
-      // Объединяем все уведомления и сортируем по времени
+      // Объединяем все уведомления и сортируем по времени (без Telegram)
       const allNotifications = [
         ...activityNotifications,
-        ...telegramNotifications,
+        // ...telegramNotifications, // Временно отключено
         ...deadlineNotifications
       ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -329,7 +331,7 @@ const Navbar = () => {
     } catch (error) {
       console.error('Ошибка загрузки уведомлений:', error);
       
-      // Если API недоступны, используем моковые данные
+      // Если API недоступны, используем моковые данные (без Telegram)
       setNotifications(getMockNotifications());
     } finally {
       setLoading(false);
@@ -351,7 +353,7 @@ const Navbar = () => {
     return 'Действие с задачей';
   };
 
-  // 5. Моковые данные для демонстрации
+  // 5. Моковые данные для демонстрации (без Telegram)
   const getMockNotifications = () => [
     {
       id: 1,
@@ -382,15 +384,16 @@ const Navbar = () => {
       read: false,
       taskId: 789
     },
-    {
-      id: 4,
-      type: 'telegram',
-      title: 'Telegram подключен',
-      message: 'Ваш Telegram аккаунт успешно привязан',
-      timestamp: new Date(Date.now() - 24 * 3600000).toISOString(),
-      read: true,
-      telegram: true
-    },
+    // Telegram-уведомление временно отключено
+    // {
+    //   id: 4,
+    //   type: 'telegram',
+    //   title: 'Telegram подключен',
+    //   message: 'Ваш Telegram аккаунт успешно привязан',
+    //   timestamp: new Date(Date.now() - 24 * 3600000).toISOString(),
+    //   read: true,
+    //   telegram: true
+    // },
     {
       id: 5,
       type: 'task_updated',
@@ -425,12 +428,14 @@ const Navbar = () => {
   };
 
   const handleNotificationClick = (notification) => {
-    // Навигация в зависимости от типа уведомления
+    // Навигация в зависимости от типа уведомления (без Telegram)
     if (notification.taskId) {
       navigate(`/tasks/${notification.taskId}`);
-    } else if (notification.telegram) {
-      navigate('/telegram');
-    } else if (notification.type === 'task_assigned') {
+    } 
+    // else if (notification.telegram) { // Временно отключено
+    //   navigate('/telegram');
+    // } 
+    else if (notification.type === 'task_assigned') {
       navigate('/tasks');
     }
     
@@ -484,7 +489,7 @@ const Navbar = () => {
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 TaskFlow
               </span>
-              <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Управление задачами</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">Управление задачами</div>
             </div>
           </Link>
 
@@ -550,7 +555,7 @@ const Navbar = () => {
                 <Moon size={20} className="text-gray-700 dark:text-gray-300" />
               )}
             </button>
-            <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-300 ml-2 dark:text-gray-400">
+            <div className="hidden sm:block text-sm text-gray-600 dark:text-gray-300 ml-2">
               {isDark ? 'Тёмная' : 'Светлая'}
             </div>
 
@@ -565,7 +570,7 @@ const Navbar = () => {
                 </div>
                 <div className="hidden md:block text-left">
                   <div className="font-medium text-sm text-gray-900 dark:text-white">{user.username}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400 capitalize dark:text-gray-300 dark:text-gray-300">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">
                     {user.role === 'admin' ? 'Администратор' : 'Пользователь'}
                   </div>
                 </div>
@@ -580,7 +585,7 @@ const Navbar = () => {
                 >
                   <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                     <div className="font-medium text-gray-900 dark:text-white">{user.username}</div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">{user.email}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">{user.email}</div>
                   </div>
                   
                   <Link
@@ -665,7 +670,7 @@ const Navbar = () => {
               <Link
                 to="/notifications"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-400"
+                className="flex items-center justify-between px-4 py-3 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <div className="flex items-center space-x-3">
                   <Bell size={20} />

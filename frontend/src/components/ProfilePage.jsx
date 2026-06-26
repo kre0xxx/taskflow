@@ -3,7 +3,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { Bot, User, Mail, Shield, CheckCircle } from 'lucide-react';
+import { User, Mail, Shield, CheckCircle } from 'lucide-react';
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
@@ -81,7 +81,7 @@ const ProfilePage = () => {
     <div className="container mx-auto px-4 py-8">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Мой профиль</h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400 dark:text-gray-300">Управляйте своими данными, просматривайте задачи и Telegram-настройки.</p>
+        <p className="mt-2 text-gray-600 dark:text-gray-400">Управляйте своими данными и просматривайте задачи.</p>
       </motion.div>
 
       <div className="grid gap-8 lg:grid-cols-3">
@@ -118,21 +118,13 @@ const ProfilePage = () => {
               />
             </div>
             {message && <p className="text-sm text-green-600 dark:text-green-400">{message}</p>}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <button
-                type="submit"
-                disabled={saving}
-                className="inline-flex items-center justify-center rounded-2xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-60"
-              >
-                {saving ? 'Сохранение...' : 'Сохранить'}
-              </button>
-              <Link
-                to="/telegram"
-                className="inline-flex items-center justify-center rounded-2xl border border-gray-200 dark:border-gray-700 px-6 py-3 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors dark:text-gray-300"
-              >
-                <Bot className="w-4 h-4 mr-2" /> Telegram настройки
-              </Link>
-            </div>
+            <button
+              type="submit"
+              disabled={saving}
+              className="inline-flex items-center justify-center rounded-2xl bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 transition-colors disabled:opacity-60"
+            >
+              {saving ? 'Сохранение...' : 'Сохранить'}
+            </button>
           </form>
         </div>
 
@@ -142,11 +134,11 @@ const ProfilePage = () => {
               <User className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-300 dark:text-gray-300">Текущий пользователь</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Текущий пользователь</p>
               <p className="text-lg font-semibold text-gray-900 dark:text-white">{profile.username}</p>
             </div>
           </div>
-          <div className="space-y-4 text-gray-600 dark:text-gray-400 dark:text-gray-300">
+          <div className="space-y-4 text-gray-600 dark:text-gray-400">
             <div className="flex items-center justify-between">
               <span>Email</span>
               <span>{profile.email}</span>
@@ -163,13 +155,14 @@ const ProfilePage = () => {
               <span>Выполнено задач</span>
               <span>{profile.completedTasks?.length ?? 0}</span>
             </div>
-            <div className="flex items-center justify-between">
+            {/* Telegram статус временно отключен */}
+            {/* <div className="flex items-center justify-between">
               <span>Telegram</span>
               <span className="inline-flex items-center gap-2">
-                {profile.telegramChatId ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Shield className="w-4 h-4 text-gray-500 dark:text-gray-300" />}
+                {profile.telegramChatId ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <Shield className="w-4 h-4 text-gray-500 dark:text-gray-400" />}
                 {profile.telegramChatId ? 'Подключен' : 'Не подключен'}
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

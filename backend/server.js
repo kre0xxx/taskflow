@@ -3,7 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const db = require('./models');
-const notificationScheduler = require('./services/notificationScheduler');
+// const notificationScheduler = require('./services/notificationScheduler'); // Временно отключено
 
 const app = express();
 const PORT = process.env.PORT || 5002;
@@ -47,7 +47,7 @@ app.use(express.json());
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tasks', require('./routes/tasks'));
 app.use('/api/users', require('./routes/users'));
-app.use('/api/telegram', require('./routes/telegram'));
+// app.use('/api/telegram', require('./routes/telegram')); // Временно отключено
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -74,9 +74,10 @@ db.sequelize.authenticate()
     console.log('Database synchronized successfully');
     console.log('All missing columns have been added to the tables');
     
-    // Запускаем планировщик уведомлений
-    notificationScheduler.start();
-    console.log('Notification scheduler started');
+    // Запускаем планировщик уведомлений (временно отключено)
+    // notificationScheduler.start();
+    // console.log('Notification scheduler started');
+    console.log('ℹ️ Telegram notification scheduler is temporarily disabled');
     
     const server = app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server is running on port ${PORT}`);
