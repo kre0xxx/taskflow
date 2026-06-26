@@ -1,36 +1,17 @@
 import axios from 'axios';
 
-// Determine API URL based on environment
+// Determine API URL based on environment.
+// For tunnel/mobile access we prefer the same-origin /api path so Vite proxy handles it.
 const getApiBaseURL = () => {
-  // Use explicit VITE_API_URL if provided
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;
   }
-  
-  // For VSCode tunnel and remote development
-  // Construct API URL dynamically from current location
-  if (typeof window !== 'undefined') {
-    const protocol = window.location.protocol;
-    const hostname = window.location.hostname;
-    const port = window.location.port;
-    
-    // Extract backend port from env or use default
-    const backendPort = import.meta.env.VITE_API_PORT || '5002';
-    
-    // For tunnel URLs, use the same hostname with backend port
-    // For local development, use explicit localhost/API path
-    if (hostname.includes('vscode.dev') || hostname.includes('tunnel')) {
-      return `${protocol}//${hostname}:${backendPort}/api`;
-    }
-    
-    // Default: use relative path for dev server proxy
-    return '/api';
-  }
-  
+
   return '/api';
 };
 
 axios.defaults.baseURL = getApiBaseURL();
+axios.defaults.withCredentials = true;
 
 // Log API URL in development
 if (import.meta.env.DEV) {

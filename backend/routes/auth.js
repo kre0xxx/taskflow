@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const { Op } = require('sequelize');
+const { setAuthCookie, clearAuthCookie } = require('../utils/authCookie');
 
 // Регистрация
 router.post('/register', async (req, res) => {
@@ -40,6 +41,8 @@ router.post('/register', async (req, res) => {
       { expiresIn: '24h' }
     );
 
+    setAuthCookie(res, token, req);
+
     res.status(201).json({
       token,
       user: {
@@ -47,7 +50,8 @@ router.post('/register', async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role
-      }
+      },
+      session: { cookieSet: true }
     });
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -78,6 +82,8 @@ router.post('/login', async (req, res) => {
       { expiresIn: '24h' }
     );
 
+    setAuthCookie(res, token, req);
+
     res.json({
       token,
       user: {
@@ -85,13 +91,41 @@ router.post('/login', async (req, res) => {
         username: user.username,
         email: user.email,
         role: user.role
-      }
+      },
+      session: { cookieSet: true }
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// УДАЛЯЕМ маршрут telegram-bind отсюда - перенесем его в отдельный файл
+router.post('/logout', (req, res) => {
+  clearAuthCookie(res, req);
+  res.json({ success: true });
+});
+
+router.get('/me', async (req, res) => {
+  try {
+    const { getAuthToken } = require('../utils/authCookie');
+    const token = getAuthToken(req);
+
+    if (!token) {
+      return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret');
+    const user = await User.findByPk(decoded.userId, {
+      attributes: ['id', 'username', 'email', 'role', 'telegramChatId']
+    });
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
+    res.json({ user });
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid session' });
+  }
+});
 
 module.exports = router;

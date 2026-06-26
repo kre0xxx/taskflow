@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+const { getAuthToken } = require('../utils/authCookie');
 
 // Константы для сообщений об ошибках
 const ERROR_MESSAGES = {
@@ -14,27 +15,23 @@ const ERROR_MESSAGES = {
 // Основная функция авторизации
 const auth = async (req, res, next) => {
   try {
-    // Получаем токен из заголовка
+    // Получаем токен из заголовка или cookie
     const authHeader = req.header('Authorization');
+    let token = null;
+
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.replace('Bearer ', '');
+    } else {
+      token = getAuthToken(req);
+    }
     
-    if (!authHeader) {
-      console.warn('⚠️ No Authorization header provided');
+    if (!token || token.trim() === '') {
+      console.warn('⚠️ No auth token provided in header or cookie');
       return res.status(401).json({ 
         message: ERROR_MESSAGES.NO_TOKEN,
         code: 'NO_TOKEN'
       });
     }
-
-    // Проверяем формат токена
-    if (!authHeader.startsWith('Bearer ')) {
-      console.warn('⚠️ Invalid Authorization header format:', authHeader.substring(0, 20));
-      return res.status(401).json({ 
-        message: ERROR_MESSAGES.INVALID_TOKEN,
-        code: 'INVALID_FORMAT'
-      });
-    }
-
-    const token = authHeader.replace('Bearer ', '');
     
     if (!token || token.trim() === '') {
       console.warn('⚠️ Empty token provided');
@@ -167,10 +164,15 @@ const adminAuth = async (req, res, next) => {
 const optionalAuth = async (req, res, next) => {
   try {
     const authHeader = req.header('Authorization');
-    
+    let token = null;
+
     if (authHeader && authHeader.startsWith('Bearer ')) {
-      const token = authHeader.replace('Bearer ', '');
-      
+      token = authHeader.replace('Bearer ', '');
+    } else {
+      token = getAuthToken(req);
+    }
+    
+    if (token) {
       try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findByPk(decoded.userId, {

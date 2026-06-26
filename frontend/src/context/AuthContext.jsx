@@ -2,6 +2,10 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
+const authAxios = axios.create({
+  baseURL: API_URL,
+  withCredentials: true
+});
 
 const AuthContext = createContext({});
 
@@ -19,20 +23,36 @@ export const AuthProvider = ({ children }) => {
       setUser(JSON.parse(userData));
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     }
-    setLoading(false);
+
+    const restoreSession = async () => {
+      try {
+        const response = await authAxios.get('/auth/me');
+        if (response.data?.user) {
+          setUser(response.data.user);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+        }
+      } catch (error) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        delete axios.defaults.headers.common['Authorization'];
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    restoreSession();
   }, []);
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+      const response = await authAxios.post('/auth/login', { email, password });
       const { token, user } = response.data;
       
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(user);
-      
-      return { success: true };
+      return { success: true, data: response.data };
     } catch (error) {
       return { 
         success: false, 
@@ -43,7 +63,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const response = await axios.post(`${API_URL}/auth/register`, { 
+      const response = await authAxios.post('/auth/register', { 
         username, 
         email, 
         password 
@@ -58,7 +78,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    try {
+      await authAxios.post('/auth/logout');
+    } catch (error) {
+      console.warn('Logout cookie clear failed:', error);
+    }
+
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     delete axios.defaults.headers.common['Authorization'];

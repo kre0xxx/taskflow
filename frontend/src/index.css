@@ -45,6 +45,20 @@ html.dark {
   @apply transition-colors duration-200;
 }
 
+/* Иконки и SVG всегда наследуют цвет текста */
+svg,
+svg * {
+  color: inherit;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.icon-inherit {
+  color: inherit;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 /* Line clamp утилиты */
 .line-clamp-1 {
   overflow: hidden;

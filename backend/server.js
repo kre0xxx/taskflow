@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const db = require('./models');
@@ -7,6 +8,7 @@ const db = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
+app.set('trust proxy', 1);
 
 // CORS configuration for tunnel support
 const getCorsOptions = () => {
@@ -20,13 +22,13 @@ const getCorsOptions = () => {
   
   // Allow tunnel URLs: *.tunnel.vscode.dev and similar patterns
   const tunnelPattern = /^https?:\/\/[a-zA-Z0-9-]+\.([a-zA-Z0-9-]+\.)*vscode\.dev(:[0-9]+)?$/;
-  
+  const localIpPattern = /^https?:\/\/(192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[01])\.\d+\.\d+)(:\d+)?$/;
   return {
     origin: (origin, callback) => {
       // Allow requests without origin (mobile apps, curl requests, etc.)
       if (!origin) return callback(null, true);
       
-      if (allowedOrigins.includes(origin) || tunnelPattern.test(origin)) {
+      if (allowedOrigins.includes(origin) || tunnelPattern.test(origin) || localIpPattern.test(origin)) {
         callback(null, true);
       } else {
         console.warn(`CORS blocked request from: ${origin}`);
@@ -42,6 +44,7 @@ const getCorsOptions = () => {
 // Middleware
 app.use(cors(getCorsOptions()));
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
